@@ -2,6 +2,8 @@
 import axios from 'axios';
 import './App.css';
 import {useState} from 'react';
+
+
 function App () {
 
   const [gifs, setGifs] = useState([]);
@@ -11,7 +13,7 @@ function App () {
     axios.get('/gif')
     .then(response => {
       console.log(response);
-      setGifs(response.data.data);
+      setGifs(response.data.data.images.original.url);
     })
     .catch(error => {
       console.log(error);
@@ -23,7 +25,7 @@ function App () {
         <header className="App-header">
           <h1 className="App-title">APIs</h1>
           <h4><i>APIs</i></h4>
-          <button onClick={handleClick}>GIFs PLZ</button>
+          <button onClick={handleClick}>Random GIF</button>
         </header>
         <br/>
         {gifs.map((gif, i) => {
